@@ -122,25 +122,25 @@ var education = {
         {
             "name": "Clemson University",
             "location":"Clemson, SC",
-            "major": "Biological Sciences",
-            "graduation": "Non-Degree Program",
-            "years": "1996-2000",
+            "majors": "Biological Sciences",
+            "degree": "Non-Degree Program",
+            "dates": "1996-2000",
             "url": "http://www.clemson.edu/"
         },
         {
             "name": "Winthrop University",
             "location": "Rock Hill, SC",
-            "major": "Music with minor in General Sciences",
-            "graduation": "Bachelor of Arts in Music",
-            "years": "2000-2001",
+            "majors": "Music with minor in General Sciences",
+            "degree": "Bachelor of Arts in Music",
+            "dates": "2000-2001",
             "url": "http://www.winthrop.edu/"
         },
         {
             "name": "The University of Montana",
             "location": "Missoula, MT",
-            "major": "Education - Curriculum and Instruction, Secondary Science",
-            "graduation": "Masters in Education: Curriculum and Instruction",
-            "years": "2005-2008",
+            "majors": "Education - Curriculum and Instruction, Secondary Science",
+            "degree": "Masters in Education: Curriculum and Instruction",
+            "dates": "2005-2008",
             "url": "http://www.umt.edu/"
         }
         ],
@@ -164,9 +164,9 @@ education.display = function() {
             var formattedSchoolName = HTMLschoolName.replace("%data%", education.schools[school].name);
             formattedSchoolName = formattedSchoolName.replace("#", education.schools[school].url);
             var formattedLocation = HTMLschoolLocation.replace("%data%", education.schools[school].location);
-            var formattedMajor = HTMLschoolMajor.replace("%data%", education.schools[school].major);
-            var formattedDegree = HTMLschoolDegree.replace("%data%", education.schools[school].graduation);
-            var formattedYears = HTMLschoolDates.replace("%data%", education.schools[school].years);
+            var formattedMajor = HTMLschoolMajor.replace("%data%", education.schools[school].majors);
+            var formattedDegree = HTMLschoolDegree.replace("%data%", education.schools[school].degree);
+            var formattedYears = HTMLschoolDates.replace("%data%", education.schools[school].dates);
             var formattedEducation = formattedSchoolName + formattedLocation + formattedDegree + formattedYears + formattedMajor;
 
             $(".education-entry:last").append(formattedEducation);
@@ -199,13 +199,13 @@ var projects = {
             "title": "Intro to HTML and CSS Website",
             "dates": "Oct 2015 - Nov 2015",
             "description": "Entry-Level website highlighting ideas around HTML and CSS",
-            "images": "images/website.png"
+            "images": ["images/website.png"]
         },
         {
             "title": "Movie Website",
             "dates": "Dec 2015 - Jan 2015-2016",
             "description": "Created a favorite movie website using Python.",
-            "images": "images/moviesite.png"
+            "images": ["images/moviesite.png"]
         }
     ]
 };
