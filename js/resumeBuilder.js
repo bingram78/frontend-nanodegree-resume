@@ -1,6 +1,6 @@
 /*
 This is empty on purpose! Your code to build the resume will go here.
-*/
+ */
 //Biographical information object followed by display function.
 var bio = {
     "name": "Blake Ingram",
@@ -10,105 +10,111 @@ var bio = {
         "mobile": "+639199815528",
         "github": "@bingram78",
         "location": "Cebu City, Cebu, Philippines"},
-    "welcome": "I am a former teacher looking to utilize my diverse talents to provide better educational technology instruction for all.",
-    "picUrl": "images/blake.jpg",
+    "welcomeMessage": "I am a former teacher looking to utilize my diverse talents to provide better educational technology instruction for all.",
+    "biopic": "images/blake.jpg",
     "skills": ["Teaching and Management", "Educational Technology", "Music"]
-}
+};
 
 bio.display = function() {
-    var formattedBioPic = HTMLbioPic.replace("%data%", bio.picUrl);
+
+    var formattedBioPic = HTMLbioPic.replace("%data%", bio.biopic);
     $("#header").append(formattedBioPic);
     
     var formattedRole = HTMLheaderRole.replace("%data%", bio.role);
     var formattedName = HTMLheaderName.replace("%data%", bio.name);
     $("#header").prepend(formattedName + formattedRole);
     
-    var formattedWelcome = HTMLwelcomeMsg.replace("%data%", bio.welcome);
+    var formattedWelcome = HTMLwelcomeMsg.replace("%data%", bio.welcomeMessage);
     $("#header").append(formattedWelcome);
 
-    for (property in bio.contacts) {
-        var formattedContactsTitle = HTMLcontactGeneric.replace("%contact%", property);
-        var formattedContacts = formattedContactsTitle.replace("%data%", bio.contacts[property]);
+    for (var property in bio.contacts) {
+        if (bio.contacts.hasOwnProperty(property)) {
+            var formattedContactsTitle = HTMLcontactGeneric.replace("%contact%", property);
+            var formattedContacts = formattedContactsTitle.replace("%data%", bio.contacts[property]);
                 
-        $("#topContacts").append(formattedContacts);
-        $("#footerContacts").append(formattedContacts);
+            $("#topContacts").append(formattedContacts);
+            $("#footerContacts").append(formattedContacts);
+        }
     }
     
     $("#header").append(HTMLskillsStart);
-    for (skill in bio.skills) {
-        var formattedSkill = HTMLskills.replace("%data%", bio.skills[skill]);
-        $("#skills:last").append(formattedSkill);
+    for (var skill in bio.skills) {
+        if (bio.skills.hasOwnProperty(skill)) {
+            var formattedSkill = HTMLskills.replace("%data%", bio.skills[skill]);
+            $("#skills:last").append(formattedSkill);
+        }
     }
-}
+};
 
-bio.display()
+bio.display();
 
 //Work object and display function
 var work = {
     "jobs": [
         {
             "title": "Science Teacher",
-            "name": "Ipswich High School",
+            "employer": "Ipswich High School",
             "location": "Ipswich, MA",
-            "responsibilities": "Taught Biology, Chemistry and Earth Science. Provided training in educational technology, particularly related to Google Apps for Education.",
-            "years": "2008-2013",
+            "description": "Taught Biology, Chemistry and Earth Science. Provided training in educational technology, particularly related to Google Apps for Education.",
+            "dates": "2008-2013",
             "url": "http://www.edlinesites.net/pages/Ipswich_High_School"
         },
         {
 
             "title": "Substitute Teacher",
-            "name": "Seattle Public Schools",
+            "employer": "Seattle Public Schools",
             "location": "Seattle, WA",
-            "responsibilities": "Substitue teaching in Science and Math",
-            "years": "2007-2008",
+            "description": "Substitue teaching in Science and Math",
+            "dates": "2007-2008",
             "url": "https://www.seattleschools.org/"
 
         },
         {
             "title": "Sales associate",
-            "name": "Outlaw Music Store",
+            "employer": "Outlaw Music Store",
             "location": "Missoula, MT",
-            "responsibilities": "Sales and repairs of stringed instruments. Managed inventory and some accounting.",
-            "years": "2006-2007",
+            "description": "Sales and repairs of stringed instruments. Managed inventory and some accounting.",
+            "dates": "2006-2007",
             "url": "http://www.outlawmusicguitarshop.com/"
         },
         {
             "title": "Administrative assistant",
-            "name": "Center for Learning and Teaching in the West (CLTW)",
+            "employer": "Center for Learning and Teaching in the West (CLTW)",
             "location": "Missoula, MT",
-            "responsibilities": "Provided assistance in invoicing, organizational management, and grant functions.",
-            "years": "2006-2007",
+            "description": "Provided assistance in invoicing, organizational management, and grant functions.",
+            "dates": "2006-2007",
             "url": "http://www.umt.edu/"
         },
         {
             "title": "Manager",
-            "name": "Blue Note Music",
+            "employer": "Blue Note Music",
             "location": "Berkeley, CA",
-            "responsibilities": "Small business management experience along with sales and instrument repair.",
-            "years": "2002-2005",
+            "description": "Small business management experience along with sales and instrument repair.",
+            "dates": "2002-2005",
             "url": "http://www.bluenoteberkeley.com/"
         }	
     ]
-}
+};
 
 work.display = function() {
-    for (job in work.jobs) {
-        $("#workExperience").append(HTMLworkStart);
+    for (var job in work.jobs) {
+        if (work.jobs.hasOwnProperty(job)) {
+            $("#workExperience").append(HTMLworkStart);
 
-        var formattedEmployer = HTMLworkEmployer.replace("%data%", work.jobs[job].name);
-        formattedEmployer = formattedEmployer.replace("#", work.jobs[job].url);
-        var formattedTitle = HTMLworkTitle.replace("%data%", work.jobs[job].title);
-        var formattedJobDates = HTMLworkDates.replace("%data%", work.jobs[job].years);
-        var formattedJobCity = HTMLworkLocation.replace("%data%", work.jobs[job].location);
-        var formattedJobDescription = HTMLworkDescription.replace("%data%", work.jobs[job].responsibilities);
-        var formattedEmployment = formattedEmployer + formattedTitle + formattedJobDates
-                                +formattedJobCity + formattedJobDescription;
+            var formattedEmployer = HTMLworkEmployer.replace("%data%", work.jobs[job].employer);
+            formattedEmployer = formattedEmployer.replace("#", work.jobs[job].url);
+            var formattedTitle = HTMLworkTitle.replace("%data%", work.jobs[job].title);
+            var formattedJobDates = HTMLworkDates.replace("%data%", work.jobs[job].dates);
+            var formattedJobCity = HTMLworkLocation.replace("%data%", work.jobs[job].location);
+            var formattedJobDescription = HTMLworkDescription.replace("%data%", work.jobs[job].description);
+            var formattedEmployment = formattedEmployer + formattedTitle + formattedJobDates +formattedJobCity + formattedJobDescription;
 
-        $(".work-entry:last").append(formattedEmployment);
+            $(".work-entry:last").append(formattedEmployment);
+        }
     }
-}
+};
 
-work.display()
+work.display();
 
 //Education object and display function
 var education = {
@@ -146,88 +152,95 @@ var education = {
             "date": "2015-2016"
         }
     ]
-}
+};
 
 education.display = function() {
     //FILL IN ONLINE CLASSES FUNCTION
     
-    for (school in education.schools) {
-        $("#education").append(HTMLschoolStart);
+    for (var school in education.schools) {
+        if (education.schools.hasOwnProperty(school)) {
+            $("#education").append(HTMLschoolStart);
 
-        var formattedSchoolName = HTMLschoolName.replace("%data%", education.schools[school].name);
-        formattedSchoolName = formattedSchoolName.replace("#", education.schools[school].url);
-        var formattedLocation = HTMLschoolLocation.replace("%data%", education.schools[school].location);
-        var formattedMajor = HTMLschoolMajor.replace("%data%", education.schools[school].major);
-        var formattedDegree = HTMLschoolDegree.replace("%data%", education.schools[school].graduation);
-        var formattedYears = HTMLschoolDates.replace("%data%", education.schools[school].years);
-        var formattedEducation = formattedSchoolName + formattedLocation + 
-                                formattedDegree + formattedYears + formattedMajor
+            var formattedSchoolName = HTMLschoolName.replace("%data%", education.schools[school].name);
+            formattedSchoolName = formattedSchoolName.replace("#", education.schools[school].url);
+            var formattedLocation = HTMLschoolLocation.replace("%data%", education.schools[school].location);
+            var formattedMajor = HTMLschoolMajor.replace("%data%", education.schools[school].major);
+            var formattedDegree = HTMLschoolDegree.replace("%data%", education.schools[school].graduation);
+            var formattedYears = HTMLschoolDates.replace("%data%", education.schools[school].years);
+            var formattedEducation = formattedSchoolName + formattedLocation + formattedDegree + formattedYears + formattedMajor;
 
-        $(".education-entry:last").append(formattedEducation);
+            $(".education-entry:last").append(formattedEducation);
+        }  
     }
-    
-    for (course in education.onlineCourses) {
-        $("#education").append(HTMLonlineClasses);
+    $("#education").append(HTMLonlineClasses);
+    for (var course in education.onlineCourses) {
+        if (education.onlineCourses.hasOwnProperty(course)) {
+            $("#education").append(HTMLschoolStart);
 
-        var formattedTitle = HTMLonlineTitle.replace("%data%", education.onlineCourses[course].title);
-        formattedTitle = formattedTitle.replace("#", education.onlineCourses[course].url);
-        var formattedSchool = HTMLonlineSchool.replace("%data%", education.onlineCourses[course].school);
-        var formattedDate = HTMLonlineDates.replace("%data%", education.onlineCourses[course].date);
-        var formattedOnlineCourses = formattedTitle + formattedSchool + formattedDate;
+            var formattedTitle = HTMLonlineTitle.replace("%data%", education.onlineCourses[course].title);
+            formattedTitle = formattedTitle.replace("#", education.onlineCourses[course].url);
+            var formattedSchool = HTMLonlineSchool.replace("%data%", education.onlineCourses[course].school);
+            var formattedDate = HTMLonlineDates.replace("%data%", education.onlineCourses[course].date);
+            var formattedUrl = HTMLonlineURL.replace("%data%", education.onlineCourses[course].url);
+            formattedUrl = formattedUrl.replace("#", education.onlineCourses[course].url);
+            var formattedOnlineCourses = formattedTitle + formattedSchool + formattedDate + formattedUrl;
 
-        $(".education-entry:last").append(formattedOnlineCourses);
+            $(".education-entry:last").append(formattedOnlineCourses);
+        }
     }
-}
+};
 
-education.display()
+education.display();
 
 //Projects object with function(Need to add more)
 var projects = {
-    "project": [
+    "projects": [
         {
             "title": "Intro to HTML and CSS Website",
             "dates": "Oct 2015 - Nov 2015",
             "description": "Entry-Level website highlighting ideas around HTML and CSS",
-            "image": "images/website.png"
+            "images": "images/website.png"
         },
         {
             "title": "Movie Website",
             "dates": "Dec 2015 - Jan 2015-2016",
             "description": "Created a favorite movie website using Python.",
-            "image": "images/moviesite.png"
+            "images": "images/moviesite.png"
         }
-        ]
-    }
+    ]
+};
     
 
 projects.display = function() {
-    for (project in projects.project) {
-        $("#projects").append(HTMLprojectStart);
+    for (var project in projects.projects) {
+        if (projects.projects.hasOwnProperty(project)) {
+            $("#projects").append(HTMLprojectStart);
 
-        var formattedTitle = HTMLprojectTitle.replace("%data%", projects.project[project].title);
-        $(".project-entry:last").append(formattedTitle);
+            var formattedTitle = HTMLprojectTitle.replace("%data%", projects.projects[project].title);
+            $(".project-entry:last").append(formattedTitle);
 
-        var formattedDates = HTMLprojectDates.replace("%data%", projects.project[project].dates);
-        $(".project-entry:last").append(formattedDates);
+            var formattedDates = HTMLprojectDates.replace("%data%", projects.projects[project].dates);
+            $(".project-entry:last").append(formattedDates);
 
-        var formattedDescription = HTMLprojectDescription.replace("%data%", projects.project[project].description);
-        $(".project-entry:last").append(formattedDescription);
+            var formattedDescription = HTMLprojectDescription.replace("%data%", projects.projects[project].description);
+            $(".project-entry:last").append(formattedDescription);
 
-        if (projects.project[project].image) {
-               var formattedImage = HTMLprojectImage.replace("%data%", projects.project[project].image);
-               $(".project-entry:last").append(formattedImage);
+            if (projects.projects[project].images) {
+                var formattedImages = HTMLprojectImage.replace("%data%", projects.projects[project].images);
+                $(".project-entry:last").append(formattedImages);
             }
         }
     }
+};
 
-projects.display()
+projects.display();
 
 
 //locationizer for capturing click locations
 function locationizer(work_obj) {
     var locationArray = [];
 
-    for (job in work_obj.jobs) {
+    for (var job in work_obj.jobs) {
         var newLocation = work_obj.jobs[job].location;
         locationArray.push(newLocation);
     }
@@ -246,4 +259,3 @@ $('#main').append(internationalizeButton);
 
 //Display Google Map
 $("#mapDiv").append(googleMap);
-
