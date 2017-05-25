@@ -19,11 +19,11 @@ bio.display = function() {
 
     var formattedBioPic = HTMLbioPic.replace("%data%", bio.biopic);
     $("#header").append(formattedBioPic);
-    
+
     var formattedRole = HTMLheaderRole.replace("%data%", bio.role);
     var formattedName = HTMLheaderName.replace("%data%", bio.name);
     $("#header").prepend(formattedName + formattedRole);
-    
+
     var formattedWelcome = HTMLwelcomeMsg.replace("%data%", bio.welcomeMessage);
     $("#header").append(formattedWelcome);
 
@@ -31,12 +31,12 @@ bio.display = function() {
         if (bio.contacts.hasOwnProperty(property)) {
             var formattedContactsTitle = HTMLcontactGeneric.replace("%contact%", property);
             var formattedContacts = formattedContactsTitle.replace("%data%", bio.contacts[property]);
-                
+
             $("#topContacts").append(formattedContacts);
             $("#footerContacts").append(formattedContacts);
         }
     }
-    
+
     $("#header").append(HTMLskillsStart);
     for (var skill in bio.skills) {
         if (bio.skills.hasOwnProperty(skill)) {
@@ -92,7 +92,7 @@ var work = {
             "description": "Small business management experience along with sales and instrument repair.",
             "dates": "2002-2005",
             "url": "http://www.bluenoteberkeley.com/"
-        }	
+        }
     ]
 };
 
@@ -122,7 +122,7 @@ var education = {
         {
             "name": "Clemson University",
             "location":"Clemson, SC",
-            "majors": "Biological Sciences",
+            "majors": "Biological Sciences and Pre-Physical Therapy",
             "degree": "Non-Degree Program",
             "dates": "1996-2000",
             "url": "http://www.clemson.edu/"
@@ -156,7 +156,7 @@ var education = {
 
 education.display = function() {
     //FILL IN ONLINE CLASSES FUNCTION
-    
+
     for (var school in education.schools) {
         if (education.schools.hasOwnProperty(school)) {
             $("#education").append(HTMLschoolStart);
@@ -170,7 +170,7 @@ education.display = function() {
             var formattedEducation = formattedSchoolName + formattedLocation + formattedDegree + formattedYears + formattedMajor;
 
             $(".education-entry:last").append(formattedEducation);
-        }  
+        }
     }
     $("#education").append(HTMLonlineClasses);
     for (var course in education.onlineCourses) {
@@ -209,7 +209,7 @@ var projects = {
         }
     ]
 };
-    
+
 
 projects.display = function() {
     for (var project in projects.projects) {
